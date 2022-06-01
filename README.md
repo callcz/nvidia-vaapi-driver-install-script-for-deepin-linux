@@ -26,6 +26,7 @@ nvidia-vaapi-driver更新至0.0.6，放在脚本目录/deb下
 源里没有的依赖包放在脚本目录/depends下，执行脚本./install.sh自动安装依赖和本体：
 
 chmod +x install.sh
+
 sudo ./install.sh
 
 如果需要自己编译可以看这里：https://bbs.deepin.org/post/233052
