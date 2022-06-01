@@ -9,11 +9,11 @@ This script contains all DEB packages. It is only suitable to use NVIDIA driver 
 
 Update NVIDIA vaapi driver to 0.0.6 and put it in the script directory/deb
 
-The dependent packages that are not in the source are placed in the script directory/dependencies to execute the script/ install. SH automatically install dependencies and ontologies:
+The dependent packages that are not in the source are placed in the script directory/dependencies to execute the script/install.sh automatically install dependencies and ontologies:
 
-chmod +x install. sh
+chmod +x install.sh
 
-sudo ./ install. sh
+sudo ./install.sh
 
 If you need to compile by yourself, you can see here: https://bbs.deepin.org/post/233052
 
