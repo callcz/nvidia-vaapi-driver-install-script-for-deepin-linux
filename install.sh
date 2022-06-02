@@ -2,9 +2,9 @@
 
 ##upgrade installed packages
 #i386 packages
-i386_ins=$(apt list --installed $(ls depends/*amd64.deb |cut -d/ -f2|cut -d_ -f1)|grep amd64|cut -d/ -f1 |sed 's/$/&*amd64.deb /g')
+i386_ins=$(apt list --installed $(ls depends/*amd64.deb |cut -d/ -f2|cut -d_ -f1)|grep i386|cut -d/ -f1 |sed 's/$/&_*i386.deb /g')
 #amd64 packages
-amd64_ins=$(apt list --installed $(ls depends/*amd64.deb |cut -d/ -f2|cut -d_ -f1)|grep amd64|cut -d/ -f1 |sed 's/$/&*amd64.deb /g')
+amd64_ins=$(apt list --installed $(ls depends/*amd64.deb |cut -d/ -f2|cut -d_ -f1)|grep amd64|cut -d/ -f1 |sed 's/$/&_*amd64.deb /g')
 #write LOG file
 apt list --installed $(ls depends/*i386.deb |cut -d/ -f2|cut -d_ -f1)|grep i386 > original_version.log
 apt list --installed $(ls depends/*amd64.deb |cut -d/ -f2|cut -d_ -f1)|grep amd64 >> original_version.log
@@ -39,6 +39,7 @@ if [ $test_opt -eq 0 ] ;then
     echo $opt_v |grep -q -e y -e Y
     test_opt_v=$?
     if [ $test_opt_v -eq 0 ] ;then
+        echo "dpkg -i $deb_ins"
         dpkg -i $deb_ins
         apt -f install
 ##check depends
@@ -75,7 +76,8 @@ if [ $test_opt -eq 0 ] ;then
                 echo $missing_depends
                 for i in $missing_depends
                 do
-                    dpkg -i depends/$i*amd64.deb
+                    echo "dpkg -i depends/"$i"_*amd64.deb"
+                    dpkg -i depends/"$i"_*amd64.deb
                 done
                 apt -f install
             else
