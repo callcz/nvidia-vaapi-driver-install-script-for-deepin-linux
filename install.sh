@@ -41,7 +41,6 @@ if [ $test_opt -eq 0 ] ;then
     if [ $test_opt_v -eq 0 ] ;then
         echo "dpkg -i $deb_ins"
         dpkg -i $deb_ins
-        apt -f install
 ##check depends
 	depends="libva-x11-2 libva2 libva-drm2 libva-glx2 libva-wayland2 vainfo"
 	depends_insed=$(apt list --installed $depends|cut -d/ -f1|cut -d_ -f1)
