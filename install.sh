@@ -2,14 +2,16 @@
 
 #upgrade installed packages
 #i386 packages
-i386_insed=$(apt list --installed $(ls depends/*i386.deb |cut -d/ -f2|cut -d_ -f1)|grep i386|cut -d/ -f1)
-i386_ins=$(echo $i386_insed |sed 's/ /*i386.deb /g'|sed 's/$/&*i386.deb/g')
+#i386_insed=$(apt list --installed $(ls depends/*i386.deb |cut -d/ -f2|cut -d_ -f1)|grep i386|cut -d/ -f1)
+#i386_ins=$(echo $i386_insed |sed 's/ /*i386.deb /g'|sed 's/$/&*i386.deb/g')
+i386_ins=$(apt list --installed $(ls depends/*i386.deb |cut -d/ -f2|cut -d_ -f1)|grep i386|cut -d/ -f1|sed 's/$/&*i386.deb/g')
 #write LOG file
 apt list --installed $(ls depends/*i386.deb |cut -d/ -f2|cut -d_ -f1)|grep i386 > original_version.log
 apt list --installed $(ls depends/*amd64.deb |cut -d/ -f2|cut -d_ -f1)|grep amd64 >> original_version.log
 #amd64 packages
-amd64_insed=$(apt list --installed $(ls depends/*amd64.deb |cut -d/ -f2|cut -d_ -f1)|grep amd64|cut -d/ -f1)
-amd64_ins=$(echo $amd64_insed |sed 's/ /*amd64.deb /g'|sed 's/$/&*amd64.deb/g')
+#amd64_insed=$(apt list --installed $(ls depends/*amd64.deb |cut -d/ -f2|cut -d_ -f1)|grep amd64|cut -d/ -f1)
+#amd64_ins=$(echo $amd64_insed |sed 's/ /*amd64.deb /g'|sed 's/$/&*amd64.deb/g')
+amd64_ins=$(apt list --installed $(ls depends/*amd64.deb |cut -d/ -f2|cut -d_ -f1)|grep amd64|cut -d/ -f1|sed 's/$/&*amd64.deb/g')
 
 #echo upgrade-able packages
 cat original_version.log
